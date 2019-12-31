@@ -386,6 +386,36 @@ describe('\n   Hotkeys.js Test Case222.\n', () => {
     hotkeys.unbind('CapsLock');
   });
 
+  test('HotKeys special keys released in reverse order test case', async () => {
+    // Normal order
+    let keyupCalled = false;
+    hotkeys('ctrl+a', { keyup: true }, (e) => {
+      if (e.type === 'keyup') {
+        keyupCalled = true;
+      }
+    });
+    __triggerKeyboardEvent(document.body, 17, { ctrlKey: true }); // Press ctrl
+    __triggerKeyboardEvent(document.body, 65, { ctrlKey: true }); // Press A
+    __triggerKeyboardUp(document.body, 65, { ctrlKey: true }); // Release A
+    __triggerKeyboardUp(document.body, 17, { ctrlKey: false }); // Release ctrl
+    expect(keyupCalled).toBeTruthy();
+
+    // Reverse order
+    keyupCalled = false;
+    hotkeys('ctrl+a', { keyup: true }, (e) => {
+      if (e.type === 'keyup') {
+        keyupCalled = true;
+      }
+    });
+    __triggerKeyboardEvent(document.body, 17, { ctrlKey: true }); // Press ctrl
+    __triggerKeyboardEvent(document.body, 65, { ctrlKey: true }); // Press A
+    __triggerKeyboardUp(document.body, 17, { ctrlKey: false }); // Release ctrl
+    __triggerKeyboardUp(document.body, 65, { ctrlKey: false }); // Release A
+    expect(keyupCalled).toBeTruthy();
+
+    hotkeys.unbind('ctrl+a');
+  });
+
 
   test('HotKeys Test Case', async () => {
     hotkeys('w', (e) => {
