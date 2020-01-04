@@ -55,6 +55,7 @@
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.7.1",
     "@babel/preset-react": "^7.7.0",
+    "@rollup/plugin-typescript": "^2.0.1",
     "@uiw/react-github-corners": "^1.0.8",
     "autoprefixer": "^8.6.1",
     "babel-eslint": "^8.2.3",
@@ -84,6 +85,8 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^9.3.4",
     "rollup-plugin-node-resolve": "^4.2.4",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.4",
     "uglify-js": "^3.6.9",
     "zlib": "^1.0.5"
   }

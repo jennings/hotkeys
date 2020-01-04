@@ -1,9 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const rollup = require('rollup');
-const babel = require('rollup-plugin-babel');
-const nodeResolve = require('rollup-plugin-node-resolve');
-const commonjs = require('rollup-plugin-commonjs');
+const typescript = require('@rollup/plugin-typescript');
 const banner = require('bannerjs');
 const zlib = require('zlib');
 // const pkg = require('../package.json');
@@ -12,13 +10,9 @@ require('colors-cli/toxic');
 
 // see below for details on the options
 const inputOptions = {
-  input: 'src/main.js',
+  input: 'src/main.ts',
   plugins: [
-    nodeResolve(), // so Rollup can find `ms`
-    commonjs(), // so Rollup can convert `ms` to an ES module
-    babel({
-      exclude: 'node_modules/**', // 只编译我们的源代码
-    }),
+    typescript(),
   ],
 };
 
